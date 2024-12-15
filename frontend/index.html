@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Payment Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tax Payment Tracker</h1>
+
+        <!-- Form to add new records -->
+        <!-- Collapsible Section -->
+        <button id="toggleFormButton">Add New Payment</button>
+        <div id="addPaymentSection" class="collapsible">
+            <form id="addPaymentForm">
+                <h2>Add New Payment</h2>
+
+                <!-- Company Name -->
+                <label for="newCompany">Company:</label>
+                <input type="text" id="newCompany" placeholder="Enter company name" required />
+
+                <!-- Amount -->
+                <label for="newAmount">Amount:</label>
+                <input type="number" id="newAmount" placeholder="Enter amount" required />
+
+                <!-- Payment Date -->
+                <label for="newPaymentDate">Payment Date:</label>
+                <input type="date" id="newPaymentDate" placeholder="Select payment date" />
+
+                <!-- Due Date -->
+                <label for="newDueDate">Due Date:</label>
+                <!-- Quick Set Buttons -->
+                <div id="addQuickDueDateButtons" style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <button type="button" onclick="setQuickDueDateForAddForm(4, 15)">April 15</button>
+                    <button type="button" onclick="setQuickDueDateForAddForm(6, 15)">June 15</button>
+                    <button type="button" onclick="setQuickDueDateForAddForm(9, 15)">September 15</button>
+                    <button type="button" onclick="setQuickDueDateForAddForm(1, 15)">January 15</button>
+                </div>
+                <!-- Due Date Picker -->
+                <input type="date" id="newDueDate" placeholder="Select due date" />
+
+                <!-- Status -->
+                <label for="newStatus">Status:</label>
+                <select id="newStatus" required>
+                    <option value="paid">Paid</option>
+                    <option value="unpaid">Unpaid</option>
+                </select>
+
+                <!-- Submit Button -->
+                <button type="submit">Add Payment</button>
+            </form>
+        </div>
+
+        <!-- Table to display tax payments -->
+        <h2>Data Table</h2>
+        <table id="paymentsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Amount</th>
+                    <th>Payment Date</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="paymentsList">
+                <!-- Payments will be loaded here dynamically -->
+            </tbody>
+        </table>
+
+        <!-- Section for Tax Table -->
+        <div class="tax-section">
+            <h2>Tax Table</h2>
+
+            <!-- Due Date Selector -->
+            <label for="dueDateFilter">Filter by Due Date:</label>
+            <input type="date" id="dueDateFilter" />
+
+            <!-- Tax Table -->
+            <table id="taxTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Company</th>
+                        <th>Amount</th>
+                        <th>Payment Date</th>
+                        <th>Status</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Filtered records will be dynamically loaded here -->
+                </tbody>
+            </table>
+
+            <!-- Tax Summary -->
+            <div class="tax-summary">
+                <label for="taxRate">Tax Rate (%):</label>
+                <input type="number" id="taxRate" value="0" />
+                <p>Total Amount: <span id="totalAmount">0</span></p>
+                <p>Tax Due: <span id="taxDue">0</span></p>
+            </div>
+        </div>
+
+        <!-- Modal for updating payment -->
+        <div id="updateModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeUpdateModal">&times;</span>
+                <h2>Update Payment</h2>
+                <form id="updatePaymentForm">
+                    <label for="editCompany">Company:</label>
+                    <input type="text" id="editCompany" required />
+
+                    <label for="editAmount">Amount:</label>
+                    <input type="number" id="editAmount" required />
+
+                    <label for="editPaymentDate">Payment Date:</label>
+                    <input type="date" id="editPaymentDate" />
+
+                    <!-- Due Date Label -->
+                    <label for="editDueDate">Due Date:</label>
+
+                    <!-- Quick Set Buttons -->
+                    <div id="quickDueDateButtons" style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <button type="button" onclick="setQuickDueDate(4, 15)">April 15</button>
+                        <button type="button" onclick="setQuickDueDate(6, 15)">June 15</button>
+                        <button type="button" onclick="setQuickDueDate(9, 15)">September 15</button>
+                        <button type="button" onclick="setQuickDueDate(1, 15)">January 15</button>
+                    </div>
+
+                    <!-- Due Date Picker -->
+                    <input type="date" id="editDueDate" required />
+
+                    <label for="editStatus">Status:</label>
+                    <select id="editStatus" required>
+                        <option value="paid">Paid</option>
+                        <option value="unpaid">Unpaid</option>
+                    </select>
+
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
