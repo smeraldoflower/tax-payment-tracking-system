@@ -190,5 +190,6 @@ The database stores records in the following table:
    - Adding a new record requires `company`, `amount`, `payment_date`, and `due_date`.  
    - Update requests validate for valid fields.  
 3. **Database**: The database file is **SQLite** (`tax_payments.db`), which is automatically initialized if it doesn’t exist.
+4. This project contains source code that has been partially developed using generative AI (chatGPT)
 
 ---
