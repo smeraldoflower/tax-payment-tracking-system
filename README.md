@@ -1,5 +1,3 @@
----
-
 # **Tax Payment Tracker API**
 
 ## **Base URL**  
